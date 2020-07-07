@@ -1,0 +1,37 @@
+<div>
+    <small class="text-info"> {{userData+", "}}You have successfully LoggedIn , To Logout<a routerLink='/login' class="text-info"> Click Here</a> </small>
+</div>
+
+
+
+<div class="matchSchedule">
+    <div class="centerdiv">
+        <label><h1>Match Schedules</h1></label>
+        <div id="match" *ngFor="let match of matches;index as i">
+            <div id="innerdiv">
+                <table id="table">
+                    <!-- <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Position</th>
+                            <th>Image</th>
+                        </tr>
+                    </thead> -->
+                    <!-- <tbody *ngFor="let player of players"> -->
+                    <tr>
+                        <td><span>Match {{ i+1}}</span> {{match.matchType | uppercase}}</td>
+                        <td> <b>{{match.groundName}}</b></td>
+                        <td> <b>INDIA</b> &nbsp; V/S &nbsp; <b>{{match.oppositeTeam |uppercase}}</b></td>
+                        <td> <span>{{getDate(match.matchDate)| date:'EEEE'}}</span>
+                            <h3>{{ getDate(match.matchDate)| date:'dd'}}
+                                <small><b>{{getDate(match.matchDate)| date:'MMMM ,y'}}</b></small></h3>
+                        </td>
+                    </tr>
+
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>

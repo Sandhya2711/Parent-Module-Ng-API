@@ -1,0 +1,19 @@
+.navbar{
+    /* background-color: rgb(207, 168, 168) !important; */
+    height: 8vh !important;
+    box-shadow: 0 8px 6px -6px rgb(214, 213, 213);
+  width:100% !important;
+  margin-bottom: 3vh;
+  
+  }
+  .navbar-header{
+    margin-left:20px;
+    line-height: 1.2;
+    font-weight: 500;
+  }
+  .navbar-header img{
+
+    margin-top: -20px;
+    height: 15vh;
+    width: 20%;}
+  

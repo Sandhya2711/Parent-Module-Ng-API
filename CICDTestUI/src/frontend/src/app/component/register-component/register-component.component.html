@@ -1,0 +1,65 @@
+<div id="register">
+    <h3 class="text-center text-white pt-5">Register form</h3>
+    <div class="container">
+        <div id="register-row" class="row justify-content-center align-items-center">
+
+            <div id="register-column" class="col-md-6">
+                <div id="register-box" class="col-md-12">
+                    <form id="register-form" class="form" #registerationForm="ngForm" (ngSubmit)="userRegistration()">
+
+
+                        <h3 class="text-center text-info">Register Here</h3>
+                        <div class="form-group">
+                            <label for="username" class="text-info">Username:</label><br>
+                            <input type="text" name="username" class="form-control" required #uname="ngModel" [(ngModel)]=user.username [class.is-invalid]="uname.invalid && uname.touched">
+                            <small class="text-danger" [class.d-none]="uname.valid || uname.untouched">UserName is required</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="text-info">Email:</label><br>
+                            <input type="text" name="email" class="form-control" required pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$" #email="ngModel" [(ngModel)]=user.emailId [class.is-invalid]="email.invalid && email.touched">
+                            <div *ngIf="email.errors && email.invalid && email.touched">
+
+                                <small class="text-danger" *ngIf="email.errors.required">Email Id is required</small>
+                                <small class="text-danger" *ngIf="email.errors.pattern">Enter valid email Id</small>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password" class="text-info">Password:</label><br>
+                            <input type="password" name="password" id="password" class="form-control" required #pwd="ngModel" [(ngModel)]=user.password [class.is-invalid]="pwd.invalid && pwd.touched">
+                            <small class="text-danger" [class.d-none]="pwd.valid || pwd.untouched">Password is required</small>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password" class="text-info">Confirm Password:</label><br>
+                            <input type="password" name="confirmpassword" id="confirmpassword" class="form-control" required #confirmpwd="ngModel" (ngModel)="user.password" [class.is-invalid]="confirmpwd.invalid && confirmpwd.touched">
+                            <small class="text-danger" [class.d-none]="(confirmpwd.value == pwd.value)|| confirmpwd.untouched" [class.is-invalid]="(confirmpwd.value == pwd.value)">Confirmed password and password must be same </small>
+                            <small class="text-danger" [class.d-none]="confirmpwd.valid || confirmpwd.untouched">Confirm Password is required</small>
+
+                            <!-- <div *ngIf="(confirmpwd.errors && confirmpwd.invalid && confirmpwd.touched )|| (confirmpwd.value != pwd.value)">
+
+                                <small class="text-danger" *ngIf="email.errors.required">Confirm Password is required</small>
+                                <small class="text-danger" *ngIf="(confirmpwd.value != pwd.value)">Confirmed password and password must be same</small>
+
+                            </div> -->
+                        </div>
+
+
+                        <div class="form-group">
+                            <br>
+                            <input type="submit" name="submit" class="btn btn-info btn-md" value="Register" [disabled]="registerationForm.form.invalid">
+                            <small class="text-danger" *ngIf="msg !=''"> {{msg}}</small>
+                        </div>
+                        <div id="register-link" class="text-right">
+                            <small class="text-info"> Existing User? <a routerLink='/login' class="text-info">LogIn Here</a></small>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>>
+    </div>
+
+</div>

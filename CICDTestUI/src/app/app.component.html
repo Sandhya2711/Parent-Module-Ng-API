@@ -1,0 +1,84 @@
+
+<div class="container">
+  <h2>Excel File</h2>
+    
+    <div>
+      <div id="b1">
+      <button class="btn btn-info"  onclick="document.getElementById('file').click();return false;">Upload</button>
+      </div>
+      <input id="file" style="visibility: hidden;" type="file" class="form-control" (change)="addfile($event)" placeholder="Upload file" enctype="multipart/form-data" accept="xlsx,xls"> 
+    </div>
+    
+    <div *ngIf="formData" >
+      <div class="row"> Show  
+        <input type="text" id="noPage" [(ngModel)]="noOfRows">  Entries
+      
+      <pagination-controls (pageChange)="p = $event" 
+      maxSize="9"
+      directionLinks="true"
+      autoHide="true"
+      responsive="true"
+      previousLabel="Previous"
+      nextLabel="Next"
+      ></pagination-controls></div>
+      <table class="table table-dark">
+       
+        <thead> 
+          <tr>
+            <th class="align-middle" *ngFor="let header of data[0]"scope="col" >{{header}}</th>
+          </tr>
+        </thead>
+             
+      <tbody>
+        <tr  *ngFor="let row of jsonResponse['errorRows'] | paginate:{ itemsPerPage:noOfRows, currentPage:p }">
+          
+          <td  data-toggle="tooltip" title="" *ngFor ="let cell of data[row['rowSrNo']] ; index as i"  id="{{ row['rowSrNo'] + jsonResponse['responseHeader'][i] }}" scope="row"  >
+            {{cell}}
+            
+            
+          </td>
+        </tr>
+      </tbody> 
+     
+    </table>
+    <pagination-controls (pageChange)="p = $event" 
+    maxSize="9"
+    directionLinks="true"
+    autoHide="true"
+    responsive="true"
+    previousLabel="Previous"
+    nextLabel="Next"
+    ></pagination-controls>
+    {{printErrors()}} 
+  
+
+      <!-- <table class="table  table-dark">
+          <thead>
+            <tr> 
+              <th *ngFor="let a of json" >{{a}}</th>
+             
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let msg of jsonResponse | slice:1 ; index as i">
+              
+              <td  *ngFor ="let a of json" scope="row"  id="{{i +a}}">{{msg["rowDetailsObj"][a]}} </td>
+             
+            
+              <td> 
+                <div *ngFor=" let b of msg['errors']" >
+                  
+                    {{b["errorColumn"] }} :  {{b["errorMsg"]}}  
+                    {{errorColor(i+b["errorColumn"])}}
+                </div>
+              </td>
+            
+        
+            </tr>
+          </tbody> 
+        </table> -->
+       
+    </div>
+    
+  
+  </div>
