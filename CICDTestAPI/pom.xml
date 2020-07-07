@@ -16,6 +16,7 @@
     </parent>
 	
 	<artifactId>registration</artifactId>
+	 <packaging>war</packaging>
 	
 	<name>registration</name>
 	
@@ -37,12 +38,14 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
+		
+		
         <dependency>
            <groupId>mysql</groupId>
            <artifactId>mysql-connector-java</artifactId>
            <version>5.1.39</version>
         </dependency>
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -54,15 +57,84 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		
+		
+		<dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-tomcat</artifactId>
+          <scope>provided</scope>
+        </dependency>
+		
+		<dependency>
+          <groupId>com.persistent</groupId>
+          <artifactId>CICDTestUI</artifactId>
+          <version>${project.version}</version>
+          <scope>runtime</scope>
+        </dependency>
+        
+        <dependency>
+		  <groupId>org.springframework.boot</groupId>
+		  <artifactId>spring-boot-starter-aop</artifactId>
+	    </dependency>
+	    <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-integration</artifactId>
+	    </dependency>
+    
+		
+		
 	</dependencies>
 
-	<build>
+<!-- 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
-	</build>
+	</build> -->
+
+    <build>
+        <plugins>
+			<plugin>
+			<artifactId>maven-resources-plugin</artifactId>
+			<executions>
+			      <execution>
+			          <id>copy-resources</id>
+			          <phase>validate</phase>
+			          <goals><goal>copy-resources</goal></goals>
+			          <configuration>
+			              <outputDirectory>${project.build.directory}/classes/resources/</outputDirectory >
+			              <resources>
+			                  <resource>
+			                      <directory>${project.parent.basedir}/CICDTestUI/src/frontend/dist/uiexample-cicd/</directory >
+			                  </resource>
+			              </resources>
+			          </configuration>
+			      </execution>
+			</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+			</plugin>
+			<plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-surefire-plugin</artifactId>
+			</plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+		        <groupId>org.apache.maven.plugins</groupId>
+		        <artifactId>maven-war-plugin</artifactId>
+		        <configuration>
+		          <packagingExcludes>WEB-INF/lib/tomcat-*.jar</packagingExcludes>
+		          <warName>NgAPI-app</warName>
+		        </configuration>
+      		</plugin>
+        </plugins>
+    </build>
 
 </project>
