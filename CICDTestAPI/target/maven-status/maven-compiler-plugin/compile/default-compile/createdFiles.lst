@@ -1,0 +1,5 @@
+com\persistent\registration\RegistrationApplication.class
+com\persistent\registration\service\RegistrationService.class
+com\persistent\registration\model\User.class
+com\persistent\registration\controller\RegistrationController.class
+com\persistent\registration\repository\RegistrationRepository.class

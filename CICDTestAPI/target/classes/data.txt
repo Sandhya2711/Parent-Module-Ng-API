@@ -1,0 +1,1 @@
+INSERT INTO `match_tb` (`match_id`, `ground_name`, `match_date`, `match_type`, `opposite_team`) VALUES ('1', 'Sydney Cricket Ground,Sydney', '2020-07-26', 'OneDay', 'Australia'), ('2', 'Melbourne Cricket Ground', '2020-08-01', 'TwentyTwenty', 'Bangladesh');
